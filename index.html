@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目Wiki - 首页</title>
+    <style>
+        :root {
+            --header-bg: #24292f;
+            --header-text: #ffffff;
+            --body-bg: #ffffff;
+            --body-text: #1f2328;
+            --link-color: #0969da;
+            --link-hover: #0a3069;
+            --border-color: #d0d7de;
+            --code-bg: #f6f8fa;
+            --code-text: #24292f;
+            --btn-bg: #f6f8fa;
+            --btn-border: #d0d7de;
+            --sidebar-bg: #f6f8fa;
+            --nav-active: #0969da;
+            --nav-text: #1f2328;
+            --nav-muted: #656d76;
+            --header-height: 64px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --header-bg: #010409;
+                --header-text: #ffffff;
+                --body-bg: #0d1117;
+                --body-text: #c9d1d9;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+                --border-color: #30363d;
+                --code-bg: #161b22;
+                --code-text: #c9d1d9;
+                --btn-bg: #21262d;
+                --btn-border: #30363d;
+                --sidebar-bg: #0d1117;
+                --nav-active: #58a6ff;
+                --nav-text: #c9d1d9;
+                --nav-muted: #8b949e;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--body-text);
+            background: var(--body-bg);
+        }
+
+        /* Header */
+        .header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .header-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .header-nav {
+            margin-left: auto;
+            display: flex;
+            gap: 24px;
+        }
+
+        .header-nav a {
+            color: var(--header-text);
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .header-nav a:hover {
+            opacity: 1;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: var(--header-height);
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 0;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--nav-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 6px 12px;
+            color: var(--nav-text);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--btn-bg);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--nav-active);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px 60px;
+            max-width: 1100px;
+        }
+
+        .page-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            color: var(--nav-muted);
+            font-size: 16px;
+        }
+
+        .content {
+            font-size: 16px;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 24px 0 12px;
+        }
+
+        .content p {
+            margin-bottom: 16px;
+        }
+
+        .content a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+            color: var(--code-text);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--link-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #0969da, #54aeff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-text {
+            color: var(--nav-muted);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--nav-muted);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 24px;
+            }
+            .header-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-brand">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>项目Wiki</span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">首页</a>
+            <a href="page2.html">文档</a>
+            <a href="#">关于</a>
+        </nav>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">快速开始</div>
+                <ul class="sidebar-nav">
+                    <li><a href="index.html" class="active">欢迎首页</a></li>
+                    <li><a href="page2.html">功能介绍</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">文档</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#">安装指南</a></li>
+                    <li><a href="#">使用教程</a></li>
+                    <li><a href="#">API参考</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">资源</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#">下载</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">欢迎来到项目Wiki</h1>
+                <p class="page-description">这是一个基于GitHub Pages风格的精美Wiki模板</p>
+            </div>
+
+            <div class="content">
+                <h2>开始使用</h2>
+                <p>这个Wiki模板采用了现代化的GitHub设计风格，包含了响应式布局、深色模式支持、优雅的动画效果等功能。</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 0l-11 6 11 6 11-6-11-6zm0 22l-11-6 11-6 11 6-11 6zm1-11v8l7-4-7-4z"/></svg>
+                        </div>
+                        <h3 class="card-title">快速导航</h3>
+                        <p class="card-text">使用侧边栏快速导航到不同的文档页面</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #2ea44f, #3fb950);">
+                            <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </div>
+                        <h3 class="card-title">开源免费</h3>
+                        <p class="card-text">完全开源免费使用，支持自定义修改</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #6e40c9, #a371f7);">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.63 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>
+                        </div>
+                        <h3 class="card-title">响应式设计</h3>
+                        <p class="card-text">完美适配桌面端和移动端设备</p>
+                    </div>
+                </div>
+
+                <h2>主要特性</h2>
+                <ul>
+                    <li>🌙 <strong>深色模式</strong> - 根据系统自动切换主题</li>
+                    <li>📱 <strong>响应式布局</strong> - 完美适配各种屏幕尺寸</li>
+                    <li>✨ <strong>现代化UI</strong> - GitHub风格的简洁设计</li>
+                    <li>⚡ <strong>快速加载</strong> - 轻量级，无依赖</li>
+                </ul>
+
+                <h2>下一步</h2>
+                <p>查看 <a href="page2.html">功能介绍</a> 了解更多信息，或开始编写您自己的内容。</p>
+
+                <div class="code-block">
+                    <code># 这是一个代码示例
+echo "欢迎使用GitHub风格Wiki模板"</code>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>© 2026 项目名称 · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a></p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
