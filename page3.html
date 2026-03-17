@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>硬件 - 智能宠物喂食器</title>
+    <style>
+        :root {
+            --header-bg: #24292f;
+            --header-text: #ffffff;
+            --body-bg: #ffffff;
+            --body-text: #1f2328;
+            --link-color: #0969da;
+            --link-hover: #0a3069;
+            --border-color: #d0d7de;
+            --code-bg: #f6f8fa;
+            --code-text: #24292f;
+            --btn-bg: #f6f8fa;
+            --btn-border: #d0d7de;
+            --sidebar-bg: #f6f8fa;
+            --nav-active: #0969da;
+            --nav-text: #1f2328;
+            --nav-muted: #656d76;
+            --header-height: 64px;
+            --accent-color: #ff6b6b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --header-bg: #010409;
+                --header-text: #ffffff;
+                --body-bg: #0d1117;
+                --body-text: #c9d1d9;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+                --border-color: #30363d;
+                --code-bg: #161b22;
+                --code-text: #c9d1d9;
+                --btn-bg: #21262d;
+                --btn-border: #30363d;
+                --sidebar-bg: #0d1117;
+                --nav-active: #58a6ff;
+                --nav-text: #c9d1d9;
+                --nav-muted: #8b949e;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--body-text);
+            background: var(--body-bg);
+        }
+
+        .header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .header-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .header-brand .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .header-nav {
+            margin-left: auto;
+            display: flex;
+            gap: 24px;
+        }
+
+        .header-nav a {
+            color: var(--header-text);
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .header-nav a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: var(--header-height);
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 0;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            padding: 0 16px;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--nav-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--nav-text);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.15s;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--btn-bg);
+        }
+
+        .sidebar-nav a.active {
+            background: var(--nav-active);
+            color: white;
+            font-weight: 500;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 40px 60px;
+            max-width: 1100px;
+        }
+
+        .page-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .page-title .icon {
+            margin-right: 12px;
+        }
+
+        .page-description {
+            color: var(--nav-muted);
+            font-size: 16px;
+        }
+
+        .content {
+            font-size: 16px;
+        }
+
+        .content h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 24px 0 12px;
+        }
+
+        .content p {
+            margin-bottom: 16px;
+        }
+
+        .content a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .content ul, .content ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .component-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .component-card:hover {
+            border-color: var(--link-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .component-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .component-card p {
+            color: var(--nav-muted);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: var(--code-bg);
+            font-weight: 600;
+        }
+
+        .circuit-diagram {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .circuit-diagram pre {
+            font-family: "SFMono-Regular", Consolas, monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            color: var(--code-text);
+        }
+
+        .pin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        .pin-table th, .pin-table td {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .pin-table th {
+            background: var(--code-bg);
+            font-weight: 600;
+        }
+
+        .pin-table .pin-number {
+            font-family: monospace;
+            color: var(--nav-active);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--nav-active);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-right: 12px;
+            margin-top: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--btn-border);
+            color: var(--body-text);
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .warning-box {
+                background: #2d2514;
+            }
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--nav-muted);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 24px;
+            }
+            .header-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-brand">
+            <div class="brand-icon">🐱</div>
+            <span>宠物喂食器</span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">首页</a>
+            <a href="page2.html">文档</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">目录</div>
+                <ul class="sidebar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="page2.html">软件</a></li>
+                    <li><a href="page3.html" class="active">硬件</a></li>
+                    <li><a href="page4.html">外观</a></li>
+                    <li><a href="page5.html">资源下载</a></li>
+                    <li><a href="page6.html">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">链接</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#">项目首页</a></li>
+                    <li><a href="#">提交Issue</a></li>
+                    <li><a href="#">参与贡献</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title"><span class="icon">🔌</span>硬件</h1>
+                <p class="page-description">智能宠物喂食器硬件原理图、接线说明及元器件清单</p>
+            </div>
+
+            <div class="content">
+                <h2>硬件概述</h2>
+                <p>本项目的硬件系统以ESP32为核心控制器，通过驱动电机实现喂食功能，配备多种传感器实现状态监测。</p>
+
+                <h2>元器件清单</h2>
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>型号/规格</th>
+                            <th>数量</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>主控芯片</td>
+                            <td>ESP32-WROOM-32</td>
+                            <td>1</td>
+                            <td>支持WiFi和蓝牙</td>
+                        </tr>
+                        <tr>
+                            <td>电机驱动</td>
+                            <td>L298N</td>
+                            <td>1</td>
+                            <td>双H桥驱动</td>
+                        </tr>
+                        <tr>
+                            <td>减速电机</td>
+                            <td>12V 30RPM</td>
+                            <td>1</td>
+                            <td>驱动出粮装置</td>
+                        </tr>
+                        <tr>
+                            <td>粮食传感器</td>
+                            <td>HC-SR501</td>
+                            <td>1</td>
+                            <td>检测余粮量</td>
+                        </tr>
+                        <tr>
+                            <td>称重传感器</td>
+                            <td>HX711 + 5KG传感器</td>
+                            <td>1</td>
+                            <td>计量出粮重量</td>
+                        </tr>
+                        <tr>
+                            <td>摄像头</td>
+                            <td>ESP32-CAM</td>
+                            <td>1</td>
+                            <td>实时监控</td>
+                        </tr>
+                        <tr>
+                            <td>电源模块</td>
+                            <td>12V 2A DC电源</td>
+                            <td>1</td>
+                            <td>主电源</td>
+                        </tr>
+                        <tr>
+                            <td>降压模块</td>
+                            <td>LM2596</td>
+                            <td>1</td>
+                            <td>12V转5V/3.3V</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>系统架构</h2>
+                <div class="component-grid">
+                    <div class="component-card">
+                        <h3>📡 通信模块</h3>
+                        <p>ESP32通过WiFi连接到云端服务器，实现远程控制和数据同步</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>⚙️ 控制模块</h3>
+                        <p>L298N驱动电机运转，精确控制出粮量和出粮时间</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>👁️ 传感模块</h3>
+                        <p>红外传感器检测粮仓余量，称重传感器精确计量</p>
+                    </div>
+                    <div class="component-card">
+                        <h3>📷 监控模块</h3>
+                        <p>摄像头实时捕捉画面，随时查看宠物进食状态</p>
+                    </div>
+                </div>
+
+                <h2>GPIO引脚分配</h2>
+                <table class="pin-table">
+                    <thead>
+                        <tr>
+                            <th>功能</th>
+                            <th>GPIO引脚</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>电机IN1</td>
+                            <td class="pin-number">GPIO 12</td>
+                            <td>控制电机正转</td>
+                        </tr>
+                        <tr>
+                            <td>电机IN2</td>
+                            <td class="pin-number">GPIO 13</td>
+                            <td>控制电机反转</td>
+                        </tr>
+                        <tr>
+                            <td>粮食检测</td>
+                            <td class="pin-number">GPIO 14</td>
+                            <td>连接HC-SR501</td>
+                        </tr>
+                        <tr>
+                            <td>称重DOUT</td>
+                            <td class="pin-number">GPIO 15</td>
+                            <td>连接HX711 DOUT</td>
+                        </tr>
+                        <tr>
+                            <td>称重SCK</td>
+                            <td class="pin-number">GPIO 2</td>
+                            <td>连接HX711 SCK</td>
+                        </tr>
+                        <tr>
+                            <td>状态LED</td>
+                            <td class="pin-number">GPIO 4</td>
+                            <td>指示工作状态</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>接线示意图</h2>
+                <div class="warning-box">
+                    <strong>⚠️ 安全提示：</strong>接线前请确保断开电源，按照以下图示正确连接。错误接线可能导致设备损坏！
+                </div>
+
+                <div class="circuit-diagram">
+                    <pre>
+┌─────────────────────────────────────────────────┐
+│                  12V 2A 电源                       │
+└─────────────────────┬───────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────┐
+│               LM2596 降压模块                      │
+│              12V → 5V/3.3V                       │
+└──────┬──────────────┬──────────────────────────┘
+       │              │
+       ▼              ▼
+┌──────────────┐  ┌──────────────┐
+│   ESP32      │  │   L298N      │
+│   主控板     │  │   电机驱动   │
+│              │  │              │
+│ GPIO 12 ────┼──┼─── IN1       │
+│ GPIO 13 ────┼──┼─── IN2       │
+│ GPIO 14 ────┼──┼─── 红外传感器│
+│ GPIO 15 ────┼──┼─── HX711     │
+│ GPIO 2  ────┼──┼─── HX711     │
+│ GPIO 4  ────┼──┼─── LED       │
+└──────────────┘  └──────┬───────┘
+                         │
+                         ▼
+                  ┌──────────┐
+                  │ 减速电机 │
+                  └──────────┘
+                    </pre>
+                </div>
+
+                <h2>PCB设计</h2>
+                <p>如需自行制作PCB，请参考以下规格：</p>
+                <ul>
+                    <li>板材：FR-4，双面板</li>
+                    <li>尺寸：100mm x 80mm</li>
+                    <li>厚度：1.6mm</li>
+                    <li>最小线宽：0.25mm</li>
+                    <li>最小间距：0.25mm</li>
+                    <li>表面处理：HASL</li>
+                </ul>
+
+                <h2>下一步</h2>
+                <p>硬件组装完成后，请查看 <a href="#">外观</a> 文档了解3D打印模型，或查看 <a href="#">资源下载</a> 获取完整的硬件资料。</p>
+
+                <a href="index.html" class="btn">← 返回首页</a>
+                <a href="page2.html" class="btn btn-outline">查看软件</a>
+            </div>
+
+            <footer class="footer">
+                <p>© 2026 智能宠物喂食器 · <a href="#">关于</a> · <a href="#">联系</a></p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能宠物喂食器 - Wiki</title>
+    <title>外观 - 智能宠物喂食器</title>
     <style>
         :root {
             --header-bg: #24292f;
@@ -244,19 +244,103 @@
             margin-bottom: 8px;
         }
 
-        .code-block {
-            background: var(--code-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 16px;
-            margin: 16px 0;
-            overflow-x: auto;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
         }
 
-        .code-block code {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
-            color: var(--code-text);
+        .gallery-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .gallery-image {
+                background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            }
+        }
+
+        .gallery-info {
+            padding: 16px;
+        }
+
+        .gallery-info h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .gallery-info p {
+            color: var(--nav-muted);
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .model-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .model-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .model-item:hover {
+            border-color: var(--link-color);
+            background: var(--code-bg);
+        }
+
+        .model-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .model-info {
+            flex: 1;
+        }
+
+        .model-info h3 {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .model-info p {
+            color: var(--nav-muted);
+            font-size: 13px;
+            margin-bottom: 0;
         }
 
         .btn {
@@ -286,86 +370,17 @@
             color: var(--body-text);
         }
 
-        .hero {
-            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .hero {
-                background: linear-gradient(135deg, #1a0a0a 0%, #2d1a1a 100%);
-            }
-        }
-
-        .hero-icon {
-            font-size: 64px;
-            margin-bottom: 16px;
-        }
-
-        .hero h2 {
-            font-size: 28px;
-            margin-bottom: 12px;
-            border: none;
-            padding: 0;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--nav-muted);
-            margin-bottom: 0;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 24px 0;
-        }
-
-        .feature-card {
+        .download-box {
+            background: var(--code-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 24px;
-            transition: all 0.2s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--link-color);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .feature-card .card-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #ff6b6b, #ffa502);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
-        .feature-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            color: var(--nav-muted);
-            font-size: 14px;
-            margin-bottom: 0;
-        }
-
-        .highlight-box {
-            background: var(--code-bg);
-            border-left: 4px solid var(--accent-color);
-            padding: 16px 20px;
+            padding: 20px;
             margin: 20px 0;
-            border-radius: 0 6px 6px 0;
+        }
+
+        .download-box h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
         }
 
         .footer {
@@ -413,10 +428,10 @@
             <div class="sidebar-section">
                 <div class="sidebar-title">目录</div>
                 <ul class="sidebar-nav">
-                    <li><a href="index.html" class="active">首页</a></li>
+                    <li><a href="index.html">首页</a></li>
                     <li><a href="page2.html">软件</a></li>
                     <li><a href="page3.html">硬件</a></li>
-                    <li><a href="page4.html">外观</a></li>
+                    <li><a href="page4.html" class="active">外观</a></li>
                     <li><a href="page5.html">资源下载</a></li>
                     <li><a href="page6.html">GitHub</a></li>
                 </ul>
@@ -433,85 +448,114 @@
 
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title"><span class="icon">🏠</span>首页</h1>
-                <p class="page-description">智能宠物喂食器 - 让你随时随地关爱你的宠物</p>
+                <h1 class="page-title"><span class="icon">🎨</span>外观</h1>
+                <p class="page-description">3D打印模型、外壳设计及DIY外观方案</p>
             </div>
 
             <div class="content">
-                <div class="hero">
-                    <div class="hero-icon">🐱</div>
-                    <h2>智能宠物喂食器</h2>
-                    <p>一款开源的智能宠物喂食器解决方案，支持远程控制、定时喂食、实时监控等功能</p>
-                </div>
+                <h2>设计概述</h2>
+                <p>外观设计采用模块化思路，分为粮仓、出粮装置、底座、外壳四个主要部分。所有零件均支持3D打印，方便用户自行制作。</p>
 
-                <h2>项目简介</h2>
-                <p>这是一个基于物联网技术的智能宠物喂食器项目，采用模块化设计，支持多种扩展功能。无论你是宠物爱好者还是开发者，都可以参与到项目的开发和改进中。</p>
-
-                <div class="highlight-box">
-                    <strong>💡 提示：</strong> 本项目完全开源，欢迎Star和Fork！如有问题，请提交Issue。
-                </div>
-
-                <h2>主要特性</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="card-icon">📱</div>
-                        <h3>远程控制</h3>
-                        <p>通过手机APP随时随地控制喂食，支持多种控制方式</p>
+                <h2>3D模型预览</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">🏠</div>
+                        <div class="gallery-info">
+                            <h3>整体外壳</h3>
+                            <p>主体结构，保护内部元器件</p>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="card-icon">⏰</div>
-                        <h3>定时喂食</h3>
-                        <p>支持多种定时策略，精确控制喂食时间和数量</p>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🌾</div>
+                        <div class="gallery-info">
+                            <h3>粮仓</h3>
+                            <p>存储宠物粮食，容量约3L</p>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="card-icon">📷</div>
-                        <h3>实时监控</h3>
-                        <p>内置摄像头，支持实时查看宠物进食状态</p>
+                    <div class="gallery-item">
+                        <div class="gallery-image">⚙️</div>
+                        <div class="gallery-info">
+                            <h3>出粮装置</h3>
+                            <p>精确控制出粮量的机械结构</p>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="card-icon">🔔</div>
-                        <h3>提醒通知</h3>
-                        <p>喂食成功、粮食不足等状态及时推送通知</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon">📊</div>
-                        <h3>数据统计</h3>
-                        <p>记录和分析宠物的进食数据，帮助科学喂养</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-icon">🔌</div>
-                        <h3>断电保护</h3>
-                        <p>内置备用电池，断电后仍能正常工作</p>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🔩</div>
+                        <div class="gallery-info">
+                            <h3>底座</h3>
+                            <p>固定电机和电路板</p>
+                        </div>
                     </div>
                 </div>
 
-                <h2>快速开始</h2>
+                <h2>打印模型清单</h2>
+                <div class="model-list">
+                    <div class="model-item">
+                        <div class="model-icon">📦</div>
+                        <div class="model-info">
+                            <h3>外壳主体 (body.stl)</h3>
+                            <p>尺寸: 200x150x180mm | 预估打印时间: 8小时</p>
+                        </div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-icon">🌾</div>
+                        <div class="model-info">
+                            <h3>粮仓 (hopper.stl)</h3>
+                            <p>尺寸: 150x150x200mm | 预估打印时间: 6小时</p>
+                        </div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-icon">⚙️</div>
+                        <div class="model-info">
+                            <h3>出粮转盘 (dispenser.stl)</h3>
+                            <p>尺寸: 80x80x40mm | 预估打印时间: 2小时</p>
+                        </div>
+                    </div>
+                    <div class="model-item">
+                        <div class="model-icon">🔩</div>
+                        <div class="model-info">
+                            <h3>底座 (base.stl)</h3>
+                            <p>尺寸: 180x140x30mm | 预估打印时间: 3小时</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>打印建议</h2>
                 <ul>
-                    <li><strong>软件</strong> - 了解控制软件和APP的使用方法</li>
-                    <li><strong>硬件</strong> - 查看硬件原理图和接线说明</li>
-                    <li><strong>外观</strong> - 3D打印模型和外壳设计</li>
-                    <li><strong>资源下载</strong> - 下载相关资料和工具</li>
-                    <li><strong>GitHub</strong> - 访问源代码仓库</li>
+                    <li><strong>材料</strong> - 推荐使用PLA或PETG材料，环保且易于打印</li>
+                    <li><strong>层高</strong> - 0.2mm层高可获得较好的表面质量</li>
+                    <li><strong>填充</strong> - 20%-30%填充即可，保证强度的同时节省材料</li>
+                    <li><strong>支撑</strong> - 悬空部分需要添加支撑，角度大于45°的部件需要支撑</li>
+                    <li><strong>后处理</strong> - 打印完成后需要打磨去除毛刺</li>
                 </ul>
 
-                <h2>技术架构</h2>
-                <div class="code-block">
-                    <code>├── 软件
-│   ├── 嵌入式程序 (Arduino/ESP32)
-│   ├── 后端服务 (Node.js/Python)
-│   └── 移动APP (Flutter/React Native)
-│
-├── 硬件
-│   ├── 主控板
-│   ├── 电机驱动
-│   └── 传感器模块
-│
-└── 外观
-    ├── 3D模型
-    └── PCB设计</code>
+                <h2>组装说明</h2>
+                <div class="download-box">
+                    <h3>📋 组装步骤</h3>
+                    <ol>
+                        <li>先安装底座，固定电机和电路板</li>
+                        <li>安装出粮转盘，连接电机轴</li>
+                        <li>安装粮仓，确保出粮口对齐</li>
+                        <li>安装外壳主体，隐藏内部元器件</li>
+                        <li>连接电源线和传感器线</li>
+                        <li>最后装上粮仓盖</li>
+                    </ol>
                 </div>
 
-                <a href="page2.html" class="btn">查看软件文档 →</a>
+                <h2>配色方案</h2>
+                <p>以下是推荐的几种配色方案：</p>
+                <ul>
+                    <li><strong>简约白</strong> - 白色外壳 + 灰色底座</li>
+                    <li><strong>温暖木</strong> - 原木色外壳 + 棕色底座</li>
+                    <li><strong>科技灰</strong> - 深灰色外壳 + 黑色底座</li>
+                    <li><strong>可爱粉</strong> - 粉色外壳 + 白色底座</li>
+                </ul>
+
+                <h2>下一步</h2>
+                <p>完成外观制作后，可以查看 <a href="#">资源下载</a> 获取所有3D模型文件，或访问 <a href="#">GitHub</a> 查看完整项目。</p>
+
+                <a href="index.html" class="btn">← 返回首页</a>
+                <a href="page3.html" class="btn btn-outline">查看硬件</a>
             </div>
 
             <footer class="footer">

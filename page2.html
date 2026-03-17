@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>功能介绍 - 项目Wiki</title>
+    <title>软件 - 智能宠物喂食器</title>
     <style>
         :root {
             --header-bg: #24292f;
@@ -22,6 +22,7 @@
             --nav-text: #1f2328;
             --nav-muted: #656d76;
             --header-height: 64px;
+            --accent-color: #ff6b6b;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -84,6 +85,17 @@
             height: 32px;
         }
 
+        .header-brand .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
         .header-nav {
             margin-left: auto;
             display: flex;
@@ -111,7 +123,7 @@
         }
 
         .sidebar {
-            width: 280px;
+            width: 260px;
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             padding: 24px 0;
@@ -146,7 +158,7 @@
 
         .sidebar-nav a {
             display: block;
-            padding: 6px 12px;
+            padding: 8px 12px;
             color: var(--nav-text);
             text-decoration: none;
             font-size: 14px;
@@ -166,7 +178,7 @@
 
         .main-content {
             flex: 1;
-            margin-left: 280px;
+            margin-left: 260px;
             padding: 40px 60px;
             max-width: 1100px;
         }
@@ -181,6 +193,10 @@
             font-size: 32px;
             font-weight: 600;
             margin-bottom: 8px;
+        }
+
+        .page-title .icon {
+            margin-right: 12px;
         }
 
         .page-description {
@@ -243,18 +259,60 @@
             color: var(--code-text);
         }
 
+        .code-block .line {
+            display: block;
+            min-height: 1.5em;
+        }
+
+        .code-block .line:hover {
+            background: rgba(0,0,0,0.03);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--nav-active);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-right: 12px;
+            margin-top: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--btn-border);
+            color: var(--body-text);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+        }
+
         .feature-list {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
             margin: 24px 0;
         }
 
         .feature-item {
             display: flex;
+            align-items: flex-start;
             gap: 16px;
             padding: 20px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.2s;
         }
 
@@ -265,7 +323,8 @@
         .feature-icon {
             width: 48px;
             height: 48px;
-            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ffa502);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -284,29 +343,66 @@
             margin-bottom: 0;
         }
 
-        .btn {
-            display: inline-block;
+        .tab-container {
+            margin: 20px 0;
+        }
+
+        .tab-list {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .tab-item {
             padding: 10px 20px;
-            background: var(--nav-active);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
+            background: none;
+            border: none;
             font-size: 14px;
-            font-weight: 500;
+            color: var(--nav-muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
             transition: all 0.2s;
-            margin-right: 12px;
-            margin-top: 16px;
         }
 
-        .btn:hover {
-            opacity: 0.9;
-            text-decoration: none;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--btn-border);
+        .tab-item:hover {
             color: var(--body-text);
+        }
+
+        .tab-item.active {
+            color: var(--nav-active);
+            border-bottom-color: var(--nav-active);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .highlight-box {
+            background: var(--code-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .warning-box {
+                background: #2d2514;
+            }
         }
 
         .footer {
@@ -340,131 +436,205 @@
 <body>
     <header class="header">
         <div class="header-brand">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            <span>项目Wiki</span>
+            <div class="brand-icon">🐱</div>
+            <span>宠物喂食器</span>
         </div>
         <nav class="header-nav">
             <a href="index.html">首页</a>
             <a href="page2.html">文档</a>
-            <a href="#">关于</a>
         </nav>
     </header>
 
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">快速开始</div>
+                <div class="sidebar-title">目录</div>
                 <ul class="sidebar-nav">
-                    <li><a href="index.html">欢迎首页</a></li>
-                    <li><a href="page2.html" class="active">功能介绍</a></li>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="page2.html" class="active">软件</a></li>
+                    <li><a href="page3.html">硬件</a></li>
+                    <li><a href="page4.html">外观</a></li>
+                    <li><a href="page5.html">资源下载</a></li>
+                    <li><a href="page6.html">GitHub</a></li>
                 </ul>
             </div>
             <div class="sidebar-section">
-                <div class="sidebar-title">文档</div>
+                <div class="sidebar-title">链接</div>
                 <ul class="sidebar-nav">
-                    <li><a href="#">安装指南</a></li>
-                    <li><a href="#">使用教程</a></li>
-                    <li><a href="#">API参考</a></li>
-                    <li><a href="#">常见问题</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <div class="sidebar-title">资源</div>
-                <ul class="sidebar-nav">
-                    <li><a href="#">下载</a></li>
-                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">项目首页</a></li>
+                    <li><a href="#">提交Issue</a></li>
+                    <li><a href="#">参与贡献</a></li>
                 </ul>
             </div>
         </aside>
 
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title">功能介绍</h1>
-                <p class="page-description">了解这个项目的核心功能和特性</p>
+                <h1 class="page-title"><span class="icon">💻</span>软件</h1>
+                <p class="page-description">宠物喂食器配套软件使用说明和开发文档</p>
             </div>
 
             <div class="content">
-                <h2>核心功能</h2>
+                <h2>软件架构</h2>
+                <p>本项目的软件系统分为三个部分：嵌入式程序、后端服务和移动APP。各部分相互协作，实现完整的智能喂食功能。</p>
 
                 <div class="feature-list">
                     <div class="feature-item">
-                        <div class="feature-icon" style="background: linear-gradient(135deg, #0969da, #54aeff);">
-                            🚀
-                        </div>
+                        <div class="feature-icon">🔧</div>
                         <div class="feature-content">
-                            <h3>高性能</h3>
-                            <p>采用最新的技术栈，确保最佳的性能表现和用户体验</p>
+                            <h3>嵌入式程序</h3>
+                            <p>运行在ESP32主控板上的固件程序，负责硬件控制、传感器数据采集、通信协议处理等功能</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon" style="background: linear-gradient(135deg, #2ea44f, #3fb950);">
-                            🔒
-                        </div>
+                        <div class="feature-icon">🖥️</div>
                         <div class="feature-content">
-                            <h3>安全可靠</h3>
-                            <p>内置多层安全机制，保护您的数据和隐私</p>
+                            <h3>后端服务</h3>
+                            <p>基于Node.js开发的服务端，提供RESTful API，处理数据存储、消息推送、设备管理等业务逻辑</p>
                         </div>
                     </div>
                     <div class="feature-item">
-                        <div class="feature-icon" style="background: linear-gradient(135deg, #6e40c9, #a371f7);">
-                            🎨
-                        </div>
+                        <div class="feature-icon">📱</div>
                         <div class="feature-content">
-                            <h3>易于定制</h3>
-                            <p>灵活的配置选项，满足各种个性化需求</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon" style="background: linear-gradient(135deg, #bf3989, #db61a2);">
-                            📖
-                        </div>
-                        <div class="feature-content">
-                            <h3>完整文档</h3>
-                            <p>详细的开发文档和API参考手册</p>
+                            <h3>移动APP</h3>
+                            <p>使用Flutter开发的跨平台应用，提供友好的用户界面，支持iOS和Android双平台</p>
                         </div>
                     </div>
                 </div>
 
-                <h2>安装使用</h2>
-                <p>只需几个简单的步骤，即可开始使用本项目：</p>
-
-                <div class="code-block">
-                    <code># 克隆项目
-git clone https://gitee.com/your-repo/project.git
-
-# 进入目录
-cd project
-
-# 安装依赖
-npm install
-
-# 启动项目
-npm run dev</code>
-                </div>
-
-                <h2>技术栈</h2>
+                <h2>环境要求</h2>
                 <ul>
-                    <li><strong>前端框架</strong> - React / Vue / Angular</li>
-                    <li><strong>样式方案</strong> - CSS / SCSS / Tailwind</li>
-                    <li><strong>构建工具</strong> - Webpack / Vite</li>
-                    <li><strong>版本控制</strong> - Git</li>
+                    <li><strong>Node.js</strong> - v16.0.0 或更高版本</li>
+                    <li><strong>Python</strong> - v3.8 或更高版本</li>
+                    <li><strong>Arduino IDE</strong> - v2.0 或更高版本（用于烧录固件）</li>
+                    <li><strong>Flutter SDK</strong> - v3.0 或更高版本（用于APP开发）</li>
                 </ul>
 
-                <h2>相关链接</h2>
-                <p>
-                    <a href="index.html">返回首页</a> | 
-                    <a href="#">查看文档</a> | 
-                    <a href="#">GitHub仓库</a>
-                </p>
+                <h2>快速开始</h2>
 
-                <a href="index.html" class="btn">返回首页</a>
-                <a href="#" class="btn btn-outline">查看文档</a>
+                <div class="tab-container">
+                    <div class="tab-list">
+                        <button class="tab-item active">嵌入式</button>
+                        <button class="tab-item">后端服务</button>
+                        <button class="tab-item">移动APP</button>
+                    </div>
+
+                    <div class="tab-content active">
+                        <h3>编译烧录固件</h3>
+                        <div class="code-block">
+                            <code><span class="line"># 克隆固件仓库</span>
+<span class="line">git clone https://gitee.com/your-repo/pet-feeder-firmware.git</span>
+<span class="line">cd pet-feeder-firmware</span>
+<span class="line"></span>
+<span class="line"># 使用PlatformIO编译</span>
+<span class="line">pio run</span>
+<span class="line"></span>
+<span class="line"># 烧录到设备</span>
+<span class="line">pio run --target upload</span></code>
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <h3>启动后端服务</h3>
+                        <div class="code-block">
+                            <code><span class="line"># 克隆后端仓库</span>
+<span class="line">git clone https://gitee.com/your-repo/pet-feeder-server.git</span>
+<span class="line">cd pet-feeder-server</span>
+<span class="line"></span>
+<span class="line"># 安装依赖</span>
+<span class="line">npm install</span>
+<span class="line"></span>
+<span class="line"># 启动服务</span>
+<span class="line">npm run start</span></code>
+                        </div>
+                    </div>
+
+                    <div class="tab-content">
+                        <h3>运行移动APP</h3>
+                        <div class="code-block">
+                            <code><span class="line"># 克隆APP仓库</span>
+<span class="line">git clone https://gitee.com/your-repo/pet-feeder-app.git</span>
+<span class="line">cd pet-feeder-app</span>
+<span class="line"></span>
+<span class="line"># 安装依赖</span>
+<span class="line">flutter pub get</span>
+<span class="line"></span>
+<span class="line"># 运行调试</span>
+<span class="line">flutter run</span></code>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>配置说明</h2>
+                <p>在启动服务前，需要配置相关参数。复制配置文件并修改对应内容：</p>
+
+                <div class="code-block">
+                    <code><span class="line"># 配置文件 config.json</span>
+<span class="line">{</span>
+<span class="line">  "server": {</span>
+<span class="line">    "port": 3000,</span>
+<span class="line">    "host": "0.0.0.0"</span>
+<span class="line">  },</span>
+<span class="line">  "database": {</span>
+<span class="line">    "type": "sqlite",</span>
+<span class="line">    "path": "./data/pet-feeder.db"</span>
+<span class="line">  },</span>
+<span class="line">  "mqtt": {</span>
+<span class="line">    "broker": "mqtt://localhost:1883",</span>
+<span class="line">    "username": "admin",</span>
+<span class="line">    "password": "password"</span>
+<span class="line">  }</span>
+<span class="line">}</span></code>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ 注意：</strong> 生产环境请修改默认密码并使用更安全的认证方式！
+                </div>
+
+                <h2>API接口</h2>
+                <p>后端服务提供以下主要API接口：</p>
+
+                <table style="width:100%; border-collapse: collapse; margin: 16px 0;">
+                    <thead>
+                        <tr style="background: var(--code-bg);">
+                            <th style="padding: 12px; border: 1px solid var(--border-color); text-align: left;">接口</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color); text-align: left;">方法</th>
+                            <th style="padding: 12px; border: 1px solid var(--border-color); text-align: left;">描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">/api/device/status</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">GET</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">获取设备状态</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">/api/feed</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">POST</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">触发喂食</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">/api/schedule</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">GET/POST</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">定时喂食计划</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">/api/stats</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">GET</td>
+                            <td style="padding: 12px; border: 1px solid var(--border-color);">获取喂食统计</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>下一步</h2>
+                <p>了解完软件部分，现在可以查看 <a href="#">硬件</a> 文档了解硬件接线，或查看 <a href="#">外观</a> 了解3D模型设计。</p>
+
+                <a href="index.html" class="btn">← 返回首页</a>
+                <a href="#" class="btn btn-outline">查看硬件文档</a>
             </div>
 
             <footer class="footer">
-                <p>© 2026 项目名称 · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Contact</a></p>
+                <p>© 2026 智能宠物喂食器 · <a href="#">关于</a> · <a href="#">联系</a></p>
             </footer>
         </main>
     </div>
